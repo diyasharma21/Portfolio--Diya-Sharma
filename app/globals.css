@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design Tokens ─────────────────────────────────────────────────────── */
+:root {
+  /* Warm ivory base */
+  --ivory-50:  #FEFCF8;
+  --ivory-100: #F9F5EE;
+  --ivory-200: #F2EAD9;
+  --ivory-300: #E8DCC5;
+
+  /* Muted sage */
+  --sage-50:  #F2F5F1;
+  --sage-100: #E6EDE4;
+  --sage-200: #CFDCCC;
+  --sage-300: #B2C8AE;
+  --sage-400: #8AAA86;
+  --sage-500: #668A62;
+  --sage-600: #4B6E47;
+
+  /* Dusty teal */
+  --teal-100: #E2EEEC;
+  --teal-200: #C0D8D5;
+  --teal-300: #8FBAB6;
+  --teal-400: #5C9893;
+  --teal-500: #3A7672;
+
+  /* Warm neutrals */
+  --stone-50:  #FAFAF9;
+  --stone-100: #F5F4F2;
+  --stone-200: #E8E5E2;
+  --stone-300: #D4D0CB;
+  --stone-400: #A89F97;
+  --stone-500: #7A716A;
+  --stone-600: #57524D;
+  --stone-700: #403C38;
+  --stone-800: #2A2522;
+  --stone-900: #1A1714;
+}
+
+/* ─── Base ───────────────────────────────────────────────────────────────── */
+@layer base {
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--ivory-50);
+    color: var(--stone-800);
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: var(--sage-200);
+    color: var(--stone-800);
+  }
+
+  .font-display {
+    font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  }
+
+  .font-mono, code {
+    font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", ui-monospace, monospace;
+  }
+}
+
+/* ─── Components ─────────────────────────────────────────────────────────── */
+@layer components {
+  .section-label {
+    @apply font-mono text-xs tracking-[0.18em] uppercase;
+    color: var(--sage-500);
+  }
+
+  .section-heading {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    @apply text-4xl md:text-5xl font-light leading-tight;
+    color: var(--stone-800);
+  }
+
+  /* Cards — refined shadow + border */
+  .card {
+    @apply bg-white rounded-2xl border transition-all duration-300;
+    border-color: var(--stone-200);
+    box-shadow: 0 1px 3px rgba(42,37,34,0.04), 0 1px 2px rgba(42,37,34,0.03);
+  }
+  .card:hover {
+    border-color: var(--sage-300);
+    box-shadow: 0 4px 16px rgba(42,37,34,0.07), 0 2px 4px rgba(42,37,34,0.04);
+    transform: translateY(-2px);
+  }
+
+  /* Primary CTA */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-xl transition-all duration-200;
+    background-color: var(--stone-800);
+    color: var(--ivory-50);
+  }
+  .btn-primary:hover {
+    background-color: var(--sage-600);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(42,37,34,0.15);
+  }
+  .btn-primary:active { transform: translateY(0); }
+
+  /* Outline CTA */
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-xl transition-all duration-200;
+    border: 1.5px solid var(--stone-300);
+    color: var(--stone-700);
+    background: transparent;
+  }
+  .btn-outline:hover {
+    border-color: var(--sage-400);
+    color: var(--sage-600);
+    background-color: var(--sage-50);
+  }
+
+  /* Skill / tech tags */
+  .tag {
+    @apply inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-mono border;
+    background-color: var(--ivory-200);
+    color: var(--stone-600);
+    border-color: var(--stone-200);
+  }
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--ivory-100); }
+::-webkit-scrollbar-thumb { background: var(--sage-200); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--sage-400); }
+
+/* ─── Toast slide-up ─────────────────────────────────────────────────────── */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fixed.bottom-6.right-6 { animation: slideUp 0.25s ease forwards; }
+
+/* ─── Navbar transition override ────────────────────────────────────────── */
+header { transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
